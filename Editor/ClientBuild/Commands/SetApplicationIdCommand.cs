@@ -4,7 +4,7 @@ using UniModules.UniGame.UniBuild.Editor.ClientBuild.Commands.PreBuildCommands;
 
 namespace Game.Modules.UniModules.UniGame.UniBuild.Editor.ClientBuild.Commands
 {
-    using Sirenix.OdinInspector;
+    //using Sirenix.OdinInspector;
     using UnityEditor;
 
 

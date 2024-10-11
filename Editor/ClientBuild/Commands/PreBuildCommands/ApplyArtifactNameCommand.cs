@@ -12,33 +12,34 @@
     using Sirenix.OdinInspector;
 #endif
 
-#if TRI_INSPECTOR
-    using TriInspector;
+#if ALCHEMY_INSPECTOR
+    using Alchemy.Inspector;
+    using ShowIfAttribute = Alchemy.Inspector.ShowIfAttribute;
 #endif
-    
+
     [Serializable]
     public class ApplyArtifactNameCommand : UnitySerializablePreBuildCommand
     {
         private const string nameFormatTemplate = "{0}-{1}";
 
-#if  ODIN_INSPECTOR || TRI_INSPECTOR
+#if  ODIN_INSPECTOR || ALCHEMY_INSPECTOR
         [BoxGroup(nameof(artifactName))]
 #endif
         public bool useVersionAsArtifactName = false;
 
-#if  ODIN_INSPECTOR || TRI_INSPECTOR
+#if  ODIN_INSPECTOR || ALCHEMY_INSPECTOR
         [BoxGroup(nameof(artifactName))]
         [ShowIf(nameof(ShowUseProductName))]
 #endif
         public bool useProductNameAsArtifactName = false;
-        
-#if  ODIN_INSPECTOR || TRI_INSPECTOR
+
+#if ODIN_INSPECTOR || ALCHEMY_INSPECTOR
         [BoxGroup(nameof(artifactName))]
         [ShowIf(nameof(ShowOverrideArtifactName))]
 #endif
         public bool overrideArtifactName = false;
 
-#if  ODIN_INSPECTOR || TRI_INSPECTOR
+#if  ODIN_INSPECTOR || ALCHEMY_INSPECTOR
         [BoxGroup(nameof(artifactName))]
         [ShowIf(nameof(ShowOverrideArtifactName))]
 #endif
@@ -51,8 +52,8 @@
         public string artifactNameTemplate = string.Empty;
         
         public bool overrideExtension = false;
-        
-#if  ODIN_INSPECTOR || TRI_INSPECTOR
+
+#if ODIN_INSPECTOR || ALCHEMY_INSPECTOR
         [ShowIf(nameof(overrideExtension))]
 #endif
         [Header("Optional: Extension: use '.' before file extension")]

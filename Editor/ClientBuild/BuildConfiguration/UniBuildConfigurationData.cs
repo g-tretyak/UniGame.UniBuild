@@ -7,8 +7,11 @@
     using UnityEngine;
     using UnityEngine.Serialization;
 
-#if TRI_INSPECTOR
+#if ALCHEMY_INSPECTOR && TRI_INSPECTOR
+    using Alchemy.Inspector;
     using TriInspector;
+    using ShowIfAttribute = Alchemy.Inspector.ShowIfAttribute;
+    using HideLabelAttribute = Alchemy.Inspector.HideLabelAttribute;
 #endif
 
 #if ODIN_INSPECTOR
@@ -57,7 +60,7 @@
         [SerializeField]
         public BuildTargetGroup buildTargetGroup;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [ShowIf(nameof(IsShownStandaloneSubTarget))]
 #endif
         public StandaloneBuildSubtarget standaloneBuildSubTarget = StandaloneBuildSubtarget.Player;
@@ -66,7 +69,7 @@
         public Il2CppCodeGeneration il2CppCodeGeneration = Il2CppCodeGeneration.OptimizeSpeed;
         public Il2CppCompilerConfiguration cppCompilerConfiguration = Il2CppCompilerConfiguration.Release;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [ShowIf(nameof(IsWebGL))]
         [InlineProperty]
         [HideLabel]
@@ -76,26 +79,26 @@
 
         public bool IsWebGL => buildTarget == BuildTarget.WebGL;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [BoxGroup(nameof(buildOptions))]
 #endif
         [Tooltip("development build")]
         public bool developmentBuild;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [BoxGroup(nameof(buildOptions))]
         [ShowIf(nameof(developmentBuild))]
 #endif
         public bool autoconnectProfiler;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [BoxGroup(nameof(buildOptions))]
         [ShowIf(nameof(developmentBuild))]
 #endif
         [Tooltip("enable deep profiling")]
         public bool deepProfiling;
 
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [ShowIf(nameof(developmentBuild))]
         [BoxGroup(nameof(buildOptions))]
 #endif
@@ -111,46 +114,46 @@
         [BoxGroup(nameof(buildOptions))]
         public ManagedStrippingLevel strippingLevel = ManagedStrippingLevel.Minimal;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
 #endif
         public bool overrideLogsSettings = false;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
         [ShowIf(nameof(overrideLogsSettings))]
 #endif
         public StackTraceLogType logsLevel = StackTraceLogType.None;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
         [ShowIf(nameof(overrideLogsSettings))]
 #endif
         public StackTraceLogType warningLevel = StackTraceLogType.None;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
         [ShowIf(nameof(overrideLogsSettings))]
 #endif
         public StackTraceLogType errorLevel = StackTraceLogType.ScriptOnly;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
         [ShowIf(nameof(overrideLogsSettings))]
 #endif
         public StackTraceLogType exceptionLevel = StackTraceLogType.ScriptOnly;
 
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [FoldoutGroup("Logging")]
         [ShowIf(nameof(overrideLogsSettings))]
 #endif
         public StackTraceLogType assertLevel = StackTraceLogType.ScriptOnly;
 
         [Tooltip("Build Arguments")]
-#if ODIN_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [BoxGroup("Build Arguments")]
 #endif
-#if ODIN_INSPECTOR || TRI_INSPECTOR
+#if ODIN_INSPECTOR || (TRI_INSPECTOR && ALCHEMY_INSPECTOR)
         [PropertySpace(8)]
         [HideLabel]
         [InlineProperty]
